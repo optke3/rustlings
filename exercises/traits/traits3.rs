@@ -7,10 +7,15 @@
 // Consider what you can add to the Licensed trait.
 // Execute `rustlings hint traits3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// TIL:
+//      Traits can have a default implementation for functions. Structs that implement
+//      the trait can then use the default version of these functions if they choose not
+//      implement the function themselves.
 
 pub trait Licensed {
-    fn licensing_info(&self) -> String;
+    fn licensing_info(&self) -> String {
+        return String::from("Some information");
+    }
 }
 
 struct SomeSoftware {

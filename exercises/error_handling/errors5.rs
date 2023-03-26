@@ -16,17 +16,26 @@
 
 // Execute `rustlings hint errors5` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 use std::error;
 use std::fmt;
 use std::num::ParseIntError;
 
 // TODO: update the return type of `main()` to make this compile.
-fn main() -> Result<(), Box<dyn ???>> {
+// TIL: error:Error is a trait, dyn has to do with traits, often used as such: Box<dyn ???>
+// "dyn" stands for dynamic dispatch.
+// Traits are kind of like interfaces, if a type is bound by a trait, that type needs to implement certain functions
+// Traits = bounds on types, e.g. <T: Bar>. In Rust, types are not bounds on types.
+// Examples:
+// - fn f<B: Bar>(b: B) -> usize
+// - fn f(b: impl Bar) -> usize
+
+// Reference: https://www.ncameron.org/blog/dyn-trait-and-impl-trait-in-rust/
+// dynamic dispatch = indirection through a vtable
+
+fn main() -> Result<(), Box<dyn error::Error>> {
     let pretend_user_input = "42";
-    let x: i64 = pretend_user_input.parse()?;
-    println!("output={:?}", PositiveNonzeroInteger::new(x)?);
+    let x: i64 = pretend_user_input.parse()?; // question mark here...can return ParseIntError
+    println!("output={:?}", PositiveNonzeroInteger::new(x)?); // question mark here...can return CreationError
     Ok(())
 }
 

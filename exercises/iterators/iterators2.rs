@@ -3,8 +3,6 @@
 // can offer. Follow the steps to complete the exercise.
 // Execute `rustlings hint iterators2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 // Step 1.
 // Complete the `capitalize_first` function.
 // "hello" -> "Hello"
@@ -12,7 +10,7 @@ pub fn capitalize_first(input: &str) -> String {
     let mut c = input.chars();
     match c.next() {
         None => String::new(),
-        Some(first) => ???,
+        Some(first) => first.to_string().to_uppercase() + c.as_str(),
     }
 }
 
@@ -21,7 +19,8 @@ pub fn capitalize_first(input: &str) -> String {
 // Return a vector of strings.
 // ["hello", "world"] -> ["Hello", "World"]
 pub fn capitalize_words_vector(words: &[&str]) -> Vec<String> {
-    vec![]
+    words.iter().map(|x| capitalize_first(x)).collect()
+    //vec![]
 }
 
 // Step 3.
@@ -29,7 +28,15 @@ pub fn capitalize_words_vector(words: &[&str]) -> Vec<String> {
 // Return a single string.
 // ["hello", " ", "world"] -> "Hello World"
 pub fn capitalize_words_string(words: &[&str]) -> String {
-    String::new()
+    // Note: reduce returns an Option, reducing an empty iterator or array returns None.
+    //words.iter().map(|x| capitalize_first(x)).reduce(|a, b| a + &b).unwrap()
+
+    // Note: not relevant here, but can apply collect() to array of Result<T, E>s to see if any of them failed
+
+    // collect is applied to iterators, used to transform it into a collection, can also create instances of types that are
+    // not collections, such as String from a vector of String, or chars.
+    words.iter().map(|x| capitalize_first(x)).collect::<String>() // turbofish
+
 }
 
 #[cfg(test)]
