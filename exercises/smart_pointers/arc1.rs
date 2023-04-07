@@ -12,7 +12,6 @@
 // Because we are using threads, our values need to be thread-safe.  Therefore,
 // we are using Arc.  We need to make a change in each of the two TODOs.
 
-
 // Make this code compile by filling in a value for `shared_numbers` where the
 // first TODO comment is, and create an initial binding for `child_numbers`
 // where the second TODO comment is. Try not to create any copies of the `numbers` Vec!
@@ -36,6 +35,7 @@ fn main() {
             println!("Sum of offset {} is {}", offset, sum);
         }));
     }
+
     for handle in joinhandles.into_iter() {
         handle.join().unwrap();
     }
